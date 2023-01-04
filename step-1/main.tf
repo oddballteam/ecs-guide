@@ -59,10 +59,13 @@ resource "aws_iam_role" "ecs_assume" {
   })
 }
 
+# allows log creation, will work with ecs task agents despite lambda name
 resource "aws_iam_role_policy_attachment" "logs_create" {
   role       = aws_iam_role.ecs_assume.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
+
+# gives full ECR permissions
 resource "aws_iam_role_policy_attachment" "ecr_full_permission" {
   role       = aws_iam_role.ecs_assume.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSAppRunnerServicePolicyForECRAccess"
@@ -75,9 +78,6 @@ resource "aws_ecs_task_definition" "main" {
   network_mode             = "awsvpc"
   # role that the Amazon ECS container agent and the Docker daemon can assume.
   execution_role_arn       = aws_iam_role.ecs_assume.arn
-  # only need a role if wanting to debug (logs and exec in to container)
-  # task_role_arn            = "arn:aws:iam::${var.account_id}:role/${var.role_name}"
-  # "environment": ${jsonencode([{"name": "MONGO_URI", "value": "${var.mongo_uri}"}])}
   cpu                      = 256 # 256 minimum
   memory                   = 512 # 512 minimum (MiB)
   container_definitions    = <<DEFINITION
@@ -88,7 +88,7 @@ resource "aws_ecs_task_definition" "main" {
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/aws/ecs/${var.name}",
+          "awslogs-group": "/aws/ecs/${var.name}-test",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs",
           "awslogs-create-group": "true"
