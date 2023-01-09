@@ -65,3 +65,6 @@ Here is their summary:
 Load Balancers make a comeback in Fargate.
 
 We will be using application Load Balancers.
+
+
+#### Up next, Lab

@@ -65,4 +65,4 @@ Once done, you can pull or push images.
 
 Or create new image repositories.
 
-#### Up next, Lab
+#### Up next, Details
