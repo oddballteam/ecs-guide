@@ -66,5 +66,4 @@ module "service" {
 
 variable "name" {
   type = string
-  default = "doug-lab"
 }
