@@ -1,5 +1,5 @@
 # An engineer's guide to ECS
-Welcome, to get started go ahead and clone this repo `git clone https://github.com/oddballteam/ecs-guide.git`.
+Welcome, to get started go ahead and clone this repo `git clone https://github.com/oddballteam/ecs-guide.git`
 
 I can recommend viewing the guide in one of two ways:
 
