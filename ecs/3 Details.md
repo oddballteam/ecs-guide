@@ -66,5 +66,6 @@ Load Balancers make a comeback in Fargate.
 
 We will be using application Load Balancers.
 
+More details about load balancers and how they work with Fargate will be part of the Lab
 
-#### Up next, Lab
+#### Up next, [Lab](https://github.com/oddballteam/ecs-guide/blob/main/ecs/4%20Lab.md)

@@ -35,4 +35,4 @@ The service will be scaled up or down depending on load.
 No EC2 instances will be generated as part of Fargate, only containers.
 
 
-#### Up Next, Fargate
+#### Up Next, [Fargate](https://github.com/oddballteam/ecs-guide/blob/main/ecs/2%20Fargate.md)

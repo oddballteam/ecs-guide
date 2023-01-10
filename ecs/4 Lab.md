@@ -81,7 +81,7 @@ After personally doing an investigation on the Deployer I would consider it a ma
 
 <img src="https://raw.githubusercontent.com/oddballteam/ecs-guide/main/img/overview.jpg" width=40%>
 
-App teams have all successfully been able to interface with it using OP's pipelines. 
+App teams have all successfully been able to interface with it using devops pipelines. 
 
 Part of the magic that makes deployer a great tool is that it **abstracts** away many of the complexities. 
 
@@ -175,7 +175,7 @@ task_role_arn = "arn:aws:iam::879613780019:role/delegatedadmin/developer/flh-dev
 
 If we had a previous task still running then it will be moved to the `ACTIVE` status at this time. However, our new task which will be started will have the `PRIMARY` status. Looking at the tasks section in ECS the task will have the `PROVISIONING` status. This is where the ENI mentioned in a previous lesson is created. After the task moves to the `PENDING` status. This is where the agent (who has the task execution role) will do things like pull the Docker image. Lastly the task is moved to the `RUNNING` status which means it has started the container.
 
-<img src="https://raw.githubusercontent.com/oddballteam/ecs-guide/main/img/task.jpg" width=40%>
+<img src="https://raw.githubusercontent.com/oddballteam/ecs-guide/main/img/task.png" width=40%>
 
 Assuming this isn't our first deploy we now have two tasks running, each running with their own task definition. The task will expose a private IP which will be targeted by the application load balancer target group. This will start with an `initial` status for the new target group. This will perform health checks (generally this means requests are sent to `HEALTH_PROTOCOL://TASK_PRIVATE_IP:HEALTH_PORT/_health`). If those health check fails AWS will assume it did something wrong and continually redeploy the same task. Assuming the app is responding to health checks with a code less than 400 it will mark it as `healthy`, the task has successfully been deployed and will receive the new traffic 👍
 

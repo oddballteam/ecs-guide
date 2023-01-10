@@ -65,4 +65,4 @@ Once done, you can pull or push images.
 
 Or create new image repositories.
 
-#### Up next, Details
+#### Up next, [Details](https://github.com/oddballteam/ecs-guide/blob/main/ecs/3%20Details.md)
