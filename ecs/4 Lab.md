@@ -63,7 +63,7 @@ While the modules involved in Fargate are in an early state there is enough to g
 
 5. enter `yes` to create the resources
 
-# 🗺️ Explore 
+# 🥾Ready
 We now have a Fargate environment bootstrapped.
 
 Currently no tasks are running since no task definitions have been written.
@@ -188,6 +188,42 @@ This has just removed traffic, the task is still running. ECS will schedule for 
 9. in your browser go to [load balancers](https://us-east-1.console.aws.amazon.com/ec2/home?region=us-east-1#LoadBalancers:) and click on your load balancer. Find the `DNS name` and paste its value into a new tab as a URL.
 
 10. 🥂 verify that you see a running web application 
+
+
+# 🗺️ Explore 
+That is all the content I have prepared for this guide at this time.
+
+I would recommend exploring Fargate at this time for yourself.
+
+As part of the Terraform you ran you have created a repository for your own images.
+
+#### 🏆Challenge
+If you want to attempt a challenge you could try uploading an image to the ECR you made.
+
+Then provide your image URI to deployer and see if you can create a stable deploy.
+
+Three important pitfalls related to this is:
+
+- the task will need to respond on the /_health path otherwise it will be considered unhealthy and continually redeploy
+- at this time only images from ECR will work at this time (they can be from your own private ECR!)
+- this challenge mainly **requires** an understanding of Docker. If you don't understand Docker I cannot recommend this challenge.
+
+#### 📎Hint
+If you would like a hint. I essentially did this challenge for you and provided you my URI as part of the deployer command you ran previously. 
+
+You could look at how I did it in the app folder of this repository. 
+
+I built it using a new JS framework called Svelte but any web app could be used.
+
+However, if you know nothing about web apps there is likely a simpler solution you could create using just nginx. This could be done with 2 files a `Dockerfile` and a `nginx.conf`
+
+> Here would be half of a nginx solution
+```dockerfile
+FROM nginx:stable-alpine
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
 
 # 🧹 Cleanup 
 
