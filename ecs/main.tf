@@ -22,13 +22,13 @@ terraform {
 data "aws_caller_identity" "current" {}
 
 module "dns" {
-  source = "git::ssh://git@origin-github.cms.gov:2222/OC-Foundational/ocf-shared.git//modules/dns?ref=08a08880896722fa5b7da58e4a0b9cda231c9402"
+  source = "git::https://github.cms.gov/OC-Foundational/ocf-shared.git//modules/dns?ref=08a08880896722fa5b7da58e4a0b9cda231c9402"
   vpc_name  = local.vpc_name
   zone_name = "${var.name}-test" # route53 zone
 }
 
 module "cluster" {
-  source = "git::ssh://git@origin-github.cms.gov:2222/OC-Foundational/ocf-shared.git//modules/ecs_cluster?ref=08a08880896722fa5b7da58e4a0b9cda231c9402"
+  source = "git::https://github.cms.gov/OC-Foundational/ocf-shared.git//modules/ecs_cluster?ref=08a08880896722fa5b7da58e4a0b9cda231c9402"
   account      = data.aws_caller_identity.current.account_id
   vpc_name     = local.vpc_name
   cluster_name = "${var.name}-test"
@@ -43,7 +43,7 @@ module "cluster" {
 # }
 
 module "service" {
-  source = "git::ssh://git@origin-github.cms.gov:2222/OC-Foundational/ocf-shared.git//modules/ecs_service?ref=08a08880896722fa5b7da58e4a0b9cda231c9402"
+  source = "git::https://github.cms.gov/OC-Foundational/ocf-shared.git//modules/ecs_service?ref=08a08880896722fa5b7da58e4a0b9cda231c9402"
   account               = data.aws_caller_identity.current.account_id
   vpc_name              = local.vpc_name
   cluster_name          = module.cluster.cluster_name
