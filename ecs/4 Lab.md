@@ -232,13 +232,6 @@ CMD ["nginx", "-g", "daemon off;"]
 3. enter `yes` to destroy the resources
 4. Manually delete ECR and S3 using the CLI
 
-> You may not have this issue if you did not upload an image. Terraform cannot delete ECR if there is at least one image present, use the CLI instead if you have this problem
-```sh
-REPO=YOUR_REPO_NAME
-
-aws ecr delete-repository --repository-name $REPO --force
-```
-
 > Terraform cannot delete buckets that are not empty, use the CLI to empty and delete them. Copy the bucket name from the Terraform output `deleting S3 Bucket (BUCKET_NAME_WILL_BE_HERE): BucketNotEmpty` and enter it into this small script. The first s3api will require you to press `q` to quit out of the delete preview.
 ```sh
 BUCKET=YOUR_BUCKET_NAME
